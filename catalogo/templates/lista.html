@@ -1,0 +1,49 @@
+{%extends "base.html" %}
+
+{% block head_title %} Pesquisa | {{block.super}} {% endblock head_title %}
+
+{% block content %}
+
+<div class='col-sm-8 col-sm-offset-3'>
+    
+    <h1>{{titulo}}</h1>
+    
+<div class="row">
+{% for post in posts %}
+
+  <div class="col-sm-12">
+    <div class="thumbnail">
+        {% if post.imagem %}
+        <img src='{{ post.imagem.url }}' class='img-responsive' />
+        {% endif %}
+      <div class="caption">
+        <h3><a href='{{ post.get_absolute_url }}'>{{post.titulo}}</a></h3>
+        <p>{{post.conteudo|linebreaks|truncatechars:120 }}</p>
+        <p><a href="{{ post.get_absolute_url }}" class="btn btn-default" role="button">Ver</a></p>
+      </div>
+    </div>
+  </div>
+<hr/>
+</div>
+
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?pagina={{ posts.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ posts.number }} de {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?pagina={{ posts.next_page_number }}">Próxima</a>
+        {% endif %}
+    </span>
+</div>
+
+
+</div>
+{% endblock content %}
