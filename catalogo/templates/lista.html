@@ -8,8 +8,14 @@
     
     <h1>{{titulo}}</h1>
     
-<div class="row">
+<a href="/" class="btn btn-dark btn-lg"><<</a>
+<form method='GET' action=''>
+    <input type='text' name='q' placeholder='Busca por componentes' value='{{ request.GET.q }}'/>
+    <input type='submit' value='Pesquisar' />
+</form>
+    
 {% for post in posts %}
+<div class="row">
 
   <div class="col-sm-12">
     <div class="thumbnail">

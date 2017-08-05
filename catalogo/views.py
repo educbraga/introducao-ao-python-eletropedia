@@ -21,8 +21,11 @@ def detalhe_do_post(request, id=None):
 
 def lista_de_posts(request):
     queryset_list = Post.objects.all()
-    paginator = Paginator(queryset_list, 5) # Show 5 contacts per page
 
+    query = request.GET.get("q")
+    if query:
+        queryset_list = queryset_list.filter(titulo__icontains=query)
+    paginator = Paginator(queryset_list, 5) # Show 5 contacts per page
     page = request.GET.get('pagina')
     try:
         queryset = paginator.page(page)

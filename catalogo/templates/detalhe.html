@@ -3,6 +3,7 @@
 {% block head_title %}{{post.titulo }} | {{ block.super}} {% endblock head_title %}
 
 {% block content %}
+<a href="/" class="btn btn-dark btn-lg"><<</a>
 <div class='col-sm-6 col-sm-offset-3'>
     {% if post.imagem %}
     <img src='{{ post.imagem.url }}' class='img-responsive' />
